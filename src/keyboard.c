@@ -421,11 +421,7 @@ void keyboard_feed(struct keyboard* self, xkb_keysym_t symbol, bool is_pressed)
 
 	keyboard_apply_mods(self, entry->code, is_pressed);
 
-	if (level_is_match)
-		send_key(self, entry->code, is_pressed);
-	else
-		send_key_with_level(self, entry->code, is_pressed,
-				entry->level);
+	send_key(self, entry->code, is_pressed);
 }
 
 void keyboard_feed_code(struct keyboard* self, xkb_keycode_t code,
