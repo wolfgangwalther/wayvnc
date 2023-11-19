@@ -176,7 +176,7 @@ int keyboard_init(struct keyboard* self, const struct xkb_rule_names* rule_names
 	if (create_lookup_table(self) < 0)
 		goto table_failure;
 
-//	keyboard_dump_lookup_table(self);
+	keyboard_dump_lookup_table(self);
 
 	char* keymap_string =
 		xkb_keymap_get_as_string(self->keymap,
@@ -412,9 +412,7 @@ void keyboard_feed(struct keyboard* self, xkb_keysym_t symbol, bool is_pressed)
 			level_is_match = false;
 	}
 
-#ifndef NDEBUG
 	keyboard__dump_entry(self, entry);
-#endif
 
 	if (!update_key_state(self, entry->code, is_pressed))
 		return;
